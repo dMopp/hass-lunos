@@ -319,7 +319,9 @@ class LUNOSFan(FanEntity):
     def percentage(self):
         if not self._current_speed:
             return None
-        return ordered_list_item_to_percentage(self._fan_speeds, self._current_speed)
+        temp_fan_speeds = self._fan_speed.copy()
+        temp_fan_speeds.remove('off')
+        return ordered_list_item_to_percentage(temp_fan_speeds, self._current_speed)
 
     @property
     def supported_features(self):
